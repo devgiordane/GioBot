@@ -21,7 +21,8 @@ def add_group(update, context):
     for member in update.message.new_chat_members:
         update.message.reply_text(f"{update.message.from_user.first_name} seja muito bem vindo(a) ao nosso grupo! Eu sou o GioBot e estou aqui pra ajudar, você pode verificar o que eu faço digitando / \n \n \n Regras do grupo: \n Seja civilizado \n Respeite a dúvida do próximo \n")
 
-
+def getDiscord(update, context):
+    update.message.reply_text("Nosso discord: https://discord.gg/s8PEtvW")
 
 def randomGoat(update, context):
     bot.send_photo(chat_id=update.message.chat_id, photo=getGoats())
@@ -42,6 +43,7 @@ def randomPokemon(update, context):
 
 updater = Updater(tk, use_context=True)
 updater.dispatcher.add_handler(CommandHandler('git', get_user_git))
+updater.dispatcher.add_handler(CommandHandler('discord', getDiscord))
 updater.dispatcher.add_handler(CommandHandler('pedra', pedra))
 updater.dispatcher.add_handler(CommandHandler('papel', papel))
 updater.dispatcher.add_handler(CommandHandler('tesoura', tesoura))
