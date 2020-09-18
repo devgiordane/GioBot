@@ -1,7 +1,11 @@
-from telegram.ext import Updater, CommandHandler
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram import Bot
 from keys import tk
 from gitUser import git_api_user
 from jokepon import jogar
+from randomPics import getCats, getDogs, getFox, getGoats, getPoke
+
+bot = Bot(token=tk)
 
 def get_user_git(update, context):
     update.message.reply_text(git_api_user(context.args[0]))
@@ -13,11 +17,40 @@ def papel(update, context):
 def tesoura(update, context):
     update.message.reply_text(jogar(3))
 
+def add_group(update, context):
+    for member in update.message.new_chat_members:
+        update.message.reply_text(f"{update.message.from_user.first_name} seja muito bem vindo(a) ao nosso grupo! Eu sou o GioBot e estou aqui pra ajudar, você pode verificar o que eu faço digitando / \n \n \n Regras do grupo: \n Seja civilizado \n Respeite a dúvida do próximo \n")
+
+
+
+def randomGoat(update, context):
+    bot.send_photo(chat_id=update.message.chat_id, photo=getGoats())
+
+
+def randomCat(update, context):
+    bot.send_photo(chat_id=update.message.chat_id, photo=getCats())
+
+def randomDog(update, context):
+    bot.send_photo(chat_id=update.message.chat_id, photo=getDogs())
+
+def randomFox(update, context):
+    bot.send_photo(chat_id=update.message.chat_id, photo=getFox())
+
+def randomPokemon(update, context):
+    bot.send_photo(chat_id=update.message.chat_id, photo=getPoke())
+
+
 updater = Updater(tk, use_context=True)
 updater.dispatcher.add_handler(CommandHandler('git', get_user_git))
 updater.dispatcher.add_handler(CommandHandler('pedra', pedra))
 updater.dispatcher.add_handler(CommandHandler('papel', papel))
 updater.dispatcher.add_handler(CommandHandler('tesoura', tesoura))
+updater.dispatcher.add_handler(CommandHandler('goat', randomGoat))
+updater.dispatcher.add_handler(CommandHandler('cat', randomCat))
+updater.dispatcher.add_handler(CommandHandler('dog', randomDog))
+updater.dispatcher.add_handler(CommandHandler('fox', randomFox))
+updater.dispatcher.add_handler(CommandHandler('pokemon', randomPokemon))
+updater.dispatcher.add_handler(MessageHandler(Filters.status_update.new_chat_members, add_group))
 
 updater.start_polling()
 updater.idle()

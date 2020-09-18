@@ -8,6 +8,7 @@ authors = ["devgiordane <bruno_giordane@outlook.com>"]
 python = "^3.8"
 python-telegram-bot = "^12.8"
 httpx = "^0.14.3"
+telegram = "^0.0.1"
 
 [tool.poetry.dev-dependencies]
 
