@@ -1,5 +1,5 @@
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from telegram import Bot
+from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
 from keys import tk
 from gitUser import git_api_user
 from jokepon import jogar
