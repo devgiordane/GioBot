@@ -17,15 +17,15 @@ def get_user_git(update, context):
 
 
 def pedra(update, context):
-    update.message.reply_text(jogar(1))
+    update.message.reply_text(jogar(1, update.message.from_user.first_name))
 
 
 def papel(update, context):
-    update.message.reply_text(jogar(2))
+    update.message.reply_text(jogar(2, update.message.from_user.first_name))
 
 
 def tesoura(update, context):
-    update.message.reply_text(jogar(3))
+    update.message.reply_text(jogar(3, update.message.from_user.first_name))
 
 
 def add_group(update, context):
